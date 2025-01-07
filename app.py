@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for, session, flash
-from nlp.chatbot import get_response
 from pymongo import MongoClient
-import json
 from models import User, UserRequest
+import json
 
 app = Flask(__name__)
 app.secret_key = 'f7a5ea38aa64fc9ea8251e9c904729f0ff13731fa2f4a5c1ac1cc142353aa1f6'  # Secret key for sessions
@@ -23,8 +22,8 @@ def index():
     # Fetch previously logged questions for the logged-in user
     logged_questions = UserRequest.get_requests(session['username'])
     
-    # Send only the most asked questions to the frontend
-    most_asked = faq_data[:5]  # Adjust the number of most asked questions as needed
+    # Display most asked questions
+    most_asked = faq_data[:5]
     return render_template('index.html', most_asked=most_asked, logged_questions=logged_questions)
 
 @app.route('/get_response', methods=['POST'])
@@ -35,8 +34,8 @@ def get_bot_response():
     user_input = request.form['message']
     response = get_response(user_input, faq_data)
     
-    # Save the conversation in MongoDB
-    UserRequest.log_request(session.get('username'), user_input, response)
+    # Log the request and response
+    UserRequest.log_request(session['username'], user_input, response)
     
     return jsonify({'response': response})
 
@@ -49,7 +48,6 @@ def login():
         username = request.form['username']
         password = request.form['password']
         
-        # Validate login credentials
         if User.login(username, password):
             session['username'] = username
             flash('Login successful!', 'success')
@@ -74,7 +72,6 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         
-        # Register the new user
         if User.register(username, password):
             flash('Signup successful! Please log in.', 'success')
             return redirect(url_for('login'))
@@ -85,4 +82,3 @@ def signup():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
