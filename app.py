@@ -5,7 +5,7 @@ import json
 from models import User, UserRequest
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Secret key for sessions
+app.secret_key = 'f7a5ea38aa64fc9ea8251e9c904729f0ff13731fa2f4a5c1ac1cc142353aa1f6'  # Secret key for sessions
 
 # Load FAQ data from JSON
 with open('data/faq.json') as f:
