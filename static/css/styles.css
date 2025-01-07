@@ -1,0 +1,73 @@
+/* Basic styles for chat interface and FAQ section */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+#chatbox {
+    width: 50%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#conversation {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.bot-message, .user-message {
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 5px 0;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.bot-message {
+    background-color: #e0f7fa;
+    align-self: flex-start;
+}
+
+.user-message {
+    background-color: #c8e6c9;
+    align-self: flex-end;
+}
+
+#faq-section {
+    width: 50%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#faq-section h3 {
+    text-align: center;
+}
+
+#faq-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#faq-section li {
+    margin: 10px 0;
+}
+
+#faq-section a {
+    text-decoration: none;
+    color: #00796b;
+    font-weight: bold;
+}
+
+#faq-section a:hover {
+    text-decoration: underline;
+}
